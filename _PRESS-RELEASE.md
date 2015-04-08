@@ -18,27 +18,37 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Your World of Sketch
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  We provide an infinite canvas for users to artistically colaborate in real time.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Your World of Sketch is an infinite canvas. The drawings made by other people appear on your screen as they happen. 
 
 ## Problem ##
   > Describe the problem your product solves.
+  A lack of collaboration and inspiration for artists.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Provides a public gallery for artistic creativity from any device anywhere in the world.
+
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "Let your imagination go wild!!!!"
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Go to the url and start creating!
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "It's a great place to waste time when I'm tired of looking at reddit!"
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  go to our url and draw whatever your heart desires
