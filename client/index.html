@@ -1,15 +1,13 @@
 <head>
-  <title>oceanbears</title>
+  <title>Your World of Sketch</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+  {{> canvasDisplay}}
 </body>
 
-<template name="hello">
-  <canvas class="canvas" height="600" width="600">Not loaded</canvas>
+<template name="canvasDisplay">
+  <canvas class="canvas" height="1000" width="6000">Not loaded</canvas>
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
