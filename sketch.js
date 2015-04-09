@@ -43,6 +43,7 @@ if (Meteor.isClient) {
   });
 
   Template.canvasDisplay.onRendered(function() {
+    //Select the HTML canvas element with jQuery and create the 2d drawing context
     cv = $('.canvas')[0].getContext('2d');
 
   });
