@@ -16,14 +16,15 @@
   - [test] ...
   - [doc] ...
 1. When your feature branch is ready for review, push it to GitHub and submit a [pull request][]
-   directly to master. Include a description of your changes.
+   to the dev branch. Include a description of your changes.
 1. Your pull request will be reviewed by another maintainer. The point of code
    reviews is to help keep the codebase clean and of high quality and, equally
    as important, to help you grow as a programmer. If your code reviewer
    requests you make a change you don't understand, ask them why.
-1. Fix any issues raised by your code reviwer, and push your modifications as a single
+1. Fix any issues raised by your code reviewer, and push your modifications as a single
    new commit.
 1. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own commits.
+1. The dev branch should be deployed and tested before it is merged with the master branch.
 
 ## Detailed Workflow
 
@@ -62,7 +63,7 @@ for those changes later.
 
 #### Commit Message Guidelines
 
-- Commit messages should be written in the present tense; e.g. "Fix continuous
+- Commit messages should be written in the past tense; e.g. "Fixed continuous
   integration script".
 - The first line of your commit message should be a brief summary of what the
   commit changes. Aim for about 70 characters max. Remember: This is a summary,
@@ -118,7 +119,7 @@ you get here again and nothing is broken and all the tests pass.
 
 ### Make a pull request
 
-Make a clear pull request from your branch to the master
+Make a clear pull request from your branch to the dev
 branch, detailing exactly what changes you made and what feature this
 should add. The clearer your pull request is the faster you can get
 your changes incorporated into this repo.
