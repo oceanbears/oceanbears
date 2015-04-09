@@ -1,56 +1,37 @@
 if (Meteor.isClient) {
-  var cv; //canvas context variable
-  var mouseActive = false;
+
+  Canvases = new Mongo.Collection("canvases");
 
   Template.canvasDisplay.helpers({
     //add helpers here
   });
 
-  var getMouse = function(e) {
-    //get the current mouse position from the event data
-    var x = e.clientX;
-    var y = e.clientY;
-
-    return [x, y];
-  }
 
   Template.canvasDisplay.events({
     //add event listeners here
-    'mousedown': function(e) {
-      //register mousedown
-      var coor = getMouse(e);
-      //start making a path starting from the current mouse position
-      mouseActive = true;
-      cv.lineWidth = '2';
-      cv.moveTo(coor[0], coor[1]);
-    },
-    'mousemove': function(e) {
-      //on mousemove, fill in the path, then move the start position to current mouse position
-      if (mouseActive) {  
-        var coor = getMouse(e);
-        cv.lineTo(coor[0], coor[1]);
-        cv.stroke();
-        cv.moveTo(coor[0], coor[1]);
-      }
-    },
-    'mouseup': function(e) {
-      //on mouseup, close the last path
-      var coor = getMouse(e);
-      cv.lineTo(coor[0], coor[1]);
-      cv.stroke();
-      mouseActive = false;
-    },
+    
   });
 
   Template.canvasDisplay.onRendered(function() {
-    //Select the HTML canvas element with jQuery and create the 2d drawing context
-    cv = $('.canvas')[0].getContext('2d');
+    // initialize the literally canvas widget
 
+    var lc = LC.init(
+      document.getElementsByClassName('canvasView')[0],
+      {imageURLPrefix: '/client/img'}
+    );
+
+    //save to database on change
+    lc.on('drawingChange', function(){
+      console.log("snapshot: ", lc.getSnapshotJSON() )
+      Canvases.insert( lc.getSnapshotJSON() );
+      console.log("data inserted");
+    });
   });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function() {
     // code to run on server at startup
+
   });
 }
