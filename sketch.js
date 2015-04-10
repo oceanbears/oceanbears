@@ -45,7 +45,12 @@ if (Meteor.isClient) {
   Template.canvasDisplay.onRendered(function() {
     //Select the HTML canvas element with jQuery and create the 2d drawing context
     cv = $('.canvas')[0].getContext('2d');
-
+    $('body').on('keydown', function(e) {
+      console.log(e);
+      if (e.keyCode === 13) {
+        console.log('image data: ', cv.getImageData(0, 0, 1000, 1000));
+      }
+    })
   });
 }
 
