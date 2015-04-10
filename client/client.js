@@ -3,14 +3,24 @@
 */
 
 var Canvas = function() {
+  var svg;
   var self = this;
+  var windowHeight = $(window).height();
 
-
+  //update window and svg height
+  $(window).resize(function() {
+    if($(this).height() != windowHeight) {
+      windowHeight = $(this).height();
+      $('.canvasView').height(windowHeight);
+      svg.attr('height',windowHeight);
+    }
+  });
+  
   //creates the canvas
   var createSvg = function() {
     svg = d3.select('.canvasView').append('svg')
       .attr('width', '100%')
-      .attr('height', '100%')
+      .attr('height', windowHeight);
   };
   createSvg();
 
