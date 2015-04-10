@@ -14,5 +14,3 @@ Meteor.tools.Pen = function() {
     });
   };
 };
-
-console.log(new Meteor.tools.Pen());
