@@ -31,14 +31,15 @@ var Canvas = function() {
   --- end helpers
 */
 
-// mouse tracker
-var markPoint = function() {
-  var offset = $('.canvasView').offset();
-      points.insert({
-      x: (event.pageX - offset.left),
-      y: (event.pageY - offset.top)});
-}
 
+// mouse tracker
+// var markPoint = function() {
+//   var offset = $('.canvasView').offset();
+//   points.insert({
+//     x: (event.pageX - offset.left),
+//     y: (event.pageY - offset.top)
+//   });
+// }
 
 points = new Meteor.Collection('pointsCollection');
 
@@ -46,9 +47,13 @@ Deps.autorun( function () {
   Meteor.subscribe('pointsSubscription');
 });
 
+//This variable holds the current tool that is being used
+var tool;
+
 Meteor.startup( function() {
   canvas = new Canvas();
-
+  //The initial tool being used is the pen tool
+  tool = new Meteor.tools.Pen();
 
   Deps.autorun( function() {
     var data = points.find({}).fetch();
@@ -63,15 +68,16 @@ Template.canvasDisplay.helpers({
 
 });
 
-
+//These events register the user mouse inputs
 Template.canvasDisplay.events({
   //add event listeners here
 
   'click': function (event) {
-    markPoint();
+    tool.markPoint();
   },
 
   'mousedown': function (event) {
+    //When draw is true, mouse move will record data points
     Session.set('draw', true);
   },
 
@@ -80,8 +86,9 @@ Template.canvasDisplay.events({
   },
 
   'mousemove': function (event) {
+    //Only draws when mousemove is active
     if (Session.get('draw')) {
-      markPoint();
+      tool.markPoint();
     }
   }
 
