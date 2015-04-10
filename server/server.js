@@ -1,3 +1,8 @@
-Meteor.startup(function() {
-  // code to run on server at startup
-});
+// adds points database
+var points = new Meteor.Collection('pointsCollection');
+
+Meteor.publish('pointsSubscription', function() {
+  return points.find();
+})
+
+
