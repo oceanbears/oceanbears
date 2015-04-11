@@ -31,11 +31,12 @@ var Canvas = function() {
         .data(data, function(d) { return d._id; })
         .enter()
         .append('circle')
-        .attr('r', 10)
+        .attr('r', 5)
+        .attr('fill', function(d) { return d.color; })
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; });
     }
-  }
+  };
 };
 /* 
   --- end helpers
@@ -71,7 +72,7 @@ Meteor.startup( function() {
       canvas.draw(data);
     }
   });
-})
+});
 
 Template.canvasDisplay.helpers({
   //add helpers here
