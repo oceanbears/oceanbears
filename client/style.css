@@ -2,8 +2,18 @@
 body {
   overflow: hidden;
   margin: 0px 0px;
+  cursor: default;
 }
 
+/* set the color input form to the top left corner */
+.input {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+
+/* set the user count div to the top right corner */
 .usersOnline {
   position: absolute;
   top: 10px;
