@@ -7,6 +7,6 @@ body {
 .usersOnline {
   position: absolute;
   top: 10px;
-  left: 95%;
+  right: 10px;
   z-index: 1;
 }

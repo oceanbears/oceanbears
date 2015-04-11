@@ -12,7 +12,7 @@ var Canvas = function() {
     if($(this).height() != windowHeight) {
       windowHeight = $(this).height();
       $('.canvasView').height(windowHeight);
-      svg.attr('height',windowHeight);
+      svg.attr('height', windowHeight);
     }
   });
   
