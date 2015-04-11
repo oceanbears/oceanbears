@@ -8,6 +8,10 @@
 
 <template name="canvasDisplay">
   <div class="canvasView">
-    
+    <!-- Added input form for color selection -->
+    <form class= 'input' onSubmit='return Meteor.tools.getInput()'>
+      <input type='text' id='input' placeholder="Enter a color!">
+      <button>Submit</button>
+    </form>
   </div>
 </template>
