@@ -32,7 +32,7 @@ var Canvas = function() {
         .enter()
         .append('circle')
         .attr('r', 5)
-        .attr('fill', function(d) {return d.color;})
+        .attr('fill', function(d) { return d.color; })
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; });
     }
