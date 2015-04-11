@@ -7,16 +7,16 @@ var Canvas = function() {
   var self = this;
   var windowHeight = $(window).height();
 
-  //update window and svg height
+  //update window and svg height when the window is resized
   $(window).resize(function() {
     if($(this).height() != windowHeight) {
       windowHeight = $(this).height();
       $('.canvasView').height(windowHeight);
-      svg.attr('height',windowHeight);
+      svg.attr('height', windowHeight);
     }
   });
   
-  //creates the canvas
+  //function that creates the canvas, save reference to it into svg
   var createSvg = function() {
     svg = d3.select('.canvasView').append('svg')
       .attr('width', '100%')
@@ -24,12 +24,14 @@ var Canvas = function() {
   };
   createSvg();
 
+  //function to bind the points from the points collection
+  //append a circle to all of those points that are new
   self.draw = function(data) {
     if(svg) {
       //actually does the drawing
       svg.selectAll('circle')
         .data(data, function(d) { return d._id; })
-        .enter()
+        .enter() //select the datapoints that do not have a circle element already appended
         .append('circle')
         .attr('r', 5)
         .attr('fill', function(d) { return d.color; })
@@ -42,20 +44,20 @@ var Canvas = function() {
   --- end helpers
 */
 
-
-// mouse tracker
-// var markPoint = function() {
-//   var offset = $('.canvasView').offset();
-//   points.insert({
-//     x: (event.pageX - offset.left),
-//     y: (event.pageY - offset.top)
-//   });
-// }
-
+//collections for the points and the users
 points = new Meteor.Collection('pointsCollection');
+users = new Meteor.Collection('usersCollection');
 
-Deps.autorun( function () {
+//listen to the pointsCollection in the server
+Tracker.autorun( function () {
   Meteor.subscribe('pointsSubscription');
+});
+
+//Tracks the number of users currently accessing the server
+Tracker.autorun( function() {
+  Meteor.subscribe('usersSubscription');
+  var userCt = users.find().fetch();
+  Session.set('userCt', userCt.length);
 });
 
 //This variable holds the current tool that is being used
@@ -66,7 +68,8 @@ Meteor.startup( function() {
   //The initial tool being used is the pen tool
   tool = new Meteor.tools.Pen();
 
-  Deps.autorun( function() {
+  //fetch the datapoints and draw them
+  Tracker.autorun(function() {
     var data = points.find({}).fetch();
     if(canvas){
       canvas.draw(data);
@@ -74,9 +77,11 @@ Meteor.startup( function() {
   });
 });
 
-Template.canvasDisplay.helpers({
-  //add helpers here
-
+Template.userCount.helpers({
+  //usersOn returns the number of users currently connected to the server
+  usersOn: function() {
+    return Session.get('userCt');
+  }
 });
 
 //These events register the user mouse inputs
