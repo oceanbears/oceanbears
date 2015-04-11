@@ -4,6 +4,7 @@
 
 <body>
   {{> canvasDisplay}}
+  {{> userCount}}
 </body>
 
 <template name="canvasDisplay">
@@ -14,4 +15,8 @@
       <button>Submit</button>
     </form>
   </div>
+</template>
+
+<template name="userCount">
+  <div class="usersOnline">Users: {{usersOn}}</div>
 </template>
