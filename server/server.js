@@ -7,11 +7,11 @@ users.remove({});
 
 //make collections available to clients
 Meteor.publish('pointsSubscription', function() {
-	return points.find();
+  return points.find();
 })
 
 Meteor.publish('usersSubscription', function() {
-	return users.find();
+  return users.find();
 })
 
 //Add user to the users collection when their socket opens (http://docs.meteor.com/#/full/meteor_onconnection)
