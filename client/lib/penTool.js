@@ -2,11 +2,23 @@
 Meteor.tools = Meteor.tools || {};
 
 var color;
+var radius = 10;
 
-//This function is called when a new color is submitted and resets the form. 
-Meteor.tools.getInput = function(event) {
+//This function is called when a new color is submitted and resets the form.
+Meteor.tools.getColor = function() {
   color = document.getElementById("input").value;
   document.getElementById("input").value = '';
+  return false;
+};
+
+//This function is called when a new radius dimension is submitted. 
+Meteor.tools.getRadius = function() {
+  var radiusValue = parseInt(document.getElementById("radius").value);
+  if (radiusValue < 31 && radiusValue > 0) {
+    radius = document.getElementById("radius").value;
+  } else {
+    radius = 10;
+  }
   return false;
 };
 
@@ -20,7 +32,8 @@ Meteor.tools.Pen = function() {
     points.insert({
       x: (event.pageX - offset.left),
       y: (event.pageY - offset.top),
-      color: color //Added color value. Color is set through the input form. 
+      color: color, //Added color value. Color is set through the input form. 
+      radius: radius //Added radius value. Radius is set through the input form.
     });
   };
 };
