@@ -48,10 +48,6 @@ var Canvas = function() {
 points = new Meteor.Collection('pointsCollection');
 users = new Meteor.Collection('usersCollection');
 
-//listen to the pointsCollection in the server
-Tracker.autorun( function () {
-  Meteor.subscribe('pointsSubscription');
-});
 
 //Tracks the number of users currently accessing the server
 Tracker.autorun( function() {
@@ -68,12 +64,24 @@ Meteor.startup( function() {
   //The initial tool being used is the pen tool
   tool = new Meteor.tools.Pen();
 
-  //fetch the datapoints and draw them
-  Tracker.autorun(function() {
-    var data = points.find({}).fetch();
-    if(canvas){
-      canvas.draw(data);
-    }
+  Meteor.subscribe('pointsSubscription', function() {
+    var initializing = true;
+    var handle = points.find({}).observeChanges({
+      //one item in collection added
+      added: function(id) {
+        if (!initializing) { 
+          var eachPoint = points.find({_id:id}).fetch();
+          console.log(eachPoint);
+          if(canvas){
+            canvas.draw(eachPoint);
+          }
+        }
+      }
+    });
+
+    initializing = false;
+    //canvas.draw(points.find({}).fetch());
+
   });
 });
 

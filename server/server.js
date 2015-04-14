@@ -9,6 +9,7 @@ users.remove({});
 Meteor.publish('pointsSubscription', function() {
   return points.find();
 })
+
 Meteor.publish('usersSubscription', function() {
   return users.find();
 })
