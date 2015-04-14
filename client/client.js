@@ -33,7 +33,7 @@ var Canvas = function() {
         .data(data, function(d) { return d._id; })
         .enter() //select the datapoints that do not have a circle element already appended
         .append('circle')
-        .attr('r', 5)
+        .attr('r', function(d) { return d.radius; })
         .attr('fill', function(d) { return d.color; })
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; });
