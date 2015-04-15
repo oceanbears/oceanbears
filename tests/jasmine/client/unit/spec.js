@@ -1,9 +1,3 @@
-describe('Tests', function() {
-  it('should have a working test', function() {
-    expect(true).toBe(true);
-  });
-});
-
 describe('penTool', function() {
   var pen;
 
@@ -21,13 +15,30 @@ describe('penTool', function() {
   });
 });
 
-describe('client', function() {
+describe('client display', function() {
   it('should have an svg element', function() {
-    console.log($('svg'));
     expect($('svg').length).toBe(1);
   });
 
   it('should have a size and a color input form', function() {
-    
-  })
+    expect($('.sizeInput').length).toBe(1);
+    expect($('.input').length).toBe(1);
+  });
+});
+
+describe('user count', function() {
+  MeteorStubs.install();
+
+  it('should have a user counter', function(done) {
+    $(function() {
+      expect($('.usersOnline').length).toBe(1);
+      expect($('.usersOnline')[0]).toBeDefined();
+      expect(parseInt($('.usersOnline').text().match(/\d/)[0])).toBeDefined();
+      done();
+    });
+  });
+
+  xit('should increment and decrement user counter', function() {
+    //needs test
+  });
 });
