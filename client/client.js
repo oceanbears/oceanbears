@@ -86,7 +86,7 @@ Meteor.startup( function() {
 
     initializing = false;
     canvas.draw(points.find({}).fetch());
-    
+
   });
 });
 
@@ -101,7 +101,7 @@ Template.userCount.helpers({
 Template.canvasDisplay.events({
   //add event listeners here
 
-  'mousedown': function (event) {
+  'mousedown svg': function (event) {
     //When draw is true, mouse move will record data points
     Session.set('draw', true);
     tool.markPoint();
