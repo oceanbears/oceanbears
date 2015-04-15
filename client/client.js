@@ -71,7 +71,6 @@ Meteor.startup( function() {
       added: function(id) {
         if (!initializing) { 
           var eachPoint = points.find({_id:id}).fetch();
-          console.log(eachPoint);
           if(canvas){
             canvas.draw(eachPoint);
           }

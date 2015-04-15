@@ -14,8 +14,8 @@ Meteor.tools.getColor = function() {
 //This function is called when a new radius dimension is submitted. 
 Meteor.tools.getRadius = function() {
   var radiusValue = parseInt(document.getElementById("radius").value);
-  if (radiusValue < 31 && radiusValue > 0) {
-    radius = document.getElementById("radius").value;
+  if (radiusValue < 31 && radiusValue > 4) {
+    radius = radiusValue;
   } else {
     radius = 10;
   }
