@@ -3,6 +3,7 @@ Meteor.tools = Meteor.tools || {};
 
 var color;
 var radius = 10;
+var startPt;
 
 //This function is called when a new color is submitted and resets the form.
 Meteor.tools.getColor = function() {

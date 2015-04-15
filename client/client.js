@@ -79,8 +79,7 @@ Meteor.startup( function() {
     });
 
     initializing = false;
-    //canvas.draw(points.find({}).fetch());
-
+    canvas.draw(points.find({}).fetch());
   });
 });
 
@@ -105,7 +104,10 @@ Template.canvasDisplay.events({
   },
 
   'mouseup': function (event) {
-    Session.set('draw', false);
+    if (Session.get('draw')) {
+      tool.markPoint();
+      Session.set('draw', false);
+    }
   },
 
   'mousemove': function (event) {
