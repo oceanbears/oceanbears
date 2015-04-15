@@ -21,7 +21,7 @@ body {
   z-index: 1;
 }
 
-.radiusInput {
+.sizeInput {
   position: absolute;
   top: 35px;
   left: 10px;

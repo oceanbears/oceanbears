@@ -29,14 +29,20 @@ var Canvas = function() {
   self.draw = function(data) {
     if(svg) {
       //actually does the drawing
-      svg.selectAll('circle')
+      svg.selectAll('line')
         .data(data, function(d) { return d._id; })
         .enter() //select the datapoints that do not have a circle element already appended
-        .append('circle')
-        .attr('r', function(d) { return d.radius; })
-        .attr('fill', function(d) { return d.color; })
-        .attr('cx', function(d) { return d.x; })
-        .attr('cy', function(d) { return d.y; });
+        .append('line')
+        .attr({
+          x1: function(d) { return d.x1; },
+          y1: function(d) { return d.y1; },
+          x2: function(d) { return d.x2; },
+          y2: function(d) { return d.y2; }
+        })
+        .style({
+          'stroke-width': function(d) { return d.size; },
+          stroke: function(d) { return d.color; }
+        });
     }
   };
 };
@@ -79,8 +85,7 @@ Meteor.startup( function() {
     });
 
     initializing = false;
-    //canvas.draw(points.find({}).fetch());
-
+    canvas.draw(points.find({}).fetch());
   });
 });
 
@@ -95,17 +100,17 @@ Template.userCount.helpers({
 Template.canvasDisplay.events({
   //add event listeners here
 
-  'click': function (event) {
-    tool.markPoint();
-  },
-
   'mousedown': function (event) {
     //When draw is true, mouse move will record data points
     Session.set('draw', true);
+    tool.markPoint();
   },
 
   'mouseup': function (event) {
-    Session.set('draw', false);
+    if (Session.get('draw')) {
+      Session.set('draw', false);
+      tool.markPoint();
+    }
   },
 
   'mousemove': function (event) {
