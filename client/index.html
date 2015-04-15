@@ -10,14 +10,13 @@
 <template name="canvasDisplay">
   <div class="canvasView">
     <!-- Added input form for color selection -->
-    <form class= 'input' onSubmit='return Meteor.tools.getColor()'>
-      <input type='text' id='input' placeholder="Enter a Color!">
+    <form class= "input" onSubmit="return Meteor.tools.getColor()">
+      <input type="text" id='input' placeholder="Enter a Color!">
       <button>Submit</button>
     </form>
-    <!-- Added input form for size selection -->
-    <form class= 'sizeInput' onSubmit='return Meteor.tools.getSize()'>
-      <input type='text' id='size' placeholder="Enter Brush Size!">
-      <button>Submit</button>
+    <form class= "sizeInput">
+      <div id="slider"></div>
+      <input type="text" id="size"/>
     </form>
   </div>
 </template>

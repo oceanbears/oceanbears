@@ -2,7 +2,7 @@
 Meteor.tools = Meteor.tools || {};
 
 var color = 'black';
-var size = 10;
+var size = 12;
 //StartX and StartY are the from coordinates; when drawing, a line is created from the start coordinates to the current mouse position
 var startX;
 var startY;
@@ -17,10 +17,10 @@ Meteor.tools.getColor = function() {
 //This function is called when a new size dimension is submitted. 
 Meteor.tools.getSize = function() {
   var sizeValue = parseInt(document.getElementById("size").value);
-  if (sizeValue < 31 && sizeValue > 4) {
+  if (sizeValue <= 75 && sizeValue > 4) {
     size = sizeValue;
   } else {
-    size = 10;
+    size = 5;
   }
   return false;
 };

@@ -27,3 +27,16 @@ body {
   left: 10px;
   z-index: 2;
 }
+
+#size {
+  width:30px;
+  float: left;
+  background-color: rgba(54, 25, 25, .0);
+  border: none;
+  display: inline-block;
+}
+
+#slider {
+  width:145px;
+  display: inline-block;
+}
