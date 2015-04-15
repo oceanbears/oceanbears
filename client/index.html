@@ -10,8 +10,13 @@
 <template name="canvasDisplay">
   <div class="canvasView">
     <!-- Added input form for color selection -->
-    <form class= 'input' onSubmit='return Meteor.tools.getInput()'>
-      <input type='text' id='input' placeholder="Enter a color!">
+    <form class= 'input' onSubmit='return Meteor.tools.getColor()'>
+      <input type='text' id='input' placeholder="Enter a Color!">
+      <button>Submit</button>
+    </form>
+    <!-- Added input form for radius selection -->
+    <form class= 'radiusInput' onSubmit='return Meteor.tools.getRadius()'>
+      <input type='text' id='radius' placeholder="Enter Radius!">
       <button>Submit</button>
     </form>
   </div>
