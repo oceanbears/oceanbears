@@ -86,6 +86,7 @@ Meteor.startup( function() {
 
     initializing = false;
     canvas.draw(points.find({}).fetch());
+    
   });
 });
 
