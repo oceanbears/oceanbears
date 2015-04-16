@@ -9,8 +9,8 @@ var startY;
 
 //This function is called when a new color is submitted and resets the form.
 Meteor.tools.getColor = function() {
-  color = document.getElementById("input").value;
-  document.getElementById("input").value = '';
+  color = document.getElementById("color").value;
+  console.log("COLOR: ", color);
   return false;
 };
 
