@@ -1,0 +1,26 @@
+<head>
+  <title>Your World of Sketch</title>
+</head>
+
+<body>
+  {{> canvasDisplay}}
+  {{> userCount}}
+</body>
+
+<template name="canvasDisplay">
+  <div class="canvasView">
+    <!-- Added input form for color selection -->
+    <form class= "input" onSubmit="return Meteor.tools.getColor()">
+      <input type="text" id='input' placeholder="Enter a Color!">
+      <button>Submit</button>
+    </form>
+    <form class= "sizeInput">
+      <div id="slider"></div>
+      <input type="text" id="size"/>
+    </form>
+  </div>
+</template>
+
+<template name="userCount">
+  <div class="usersOnline">Users: {{usersOn}}</div>
+</template>
