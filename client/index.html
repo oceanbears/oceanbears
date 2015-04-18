@@ -9,14 +9,13 @@
 
 <template name="canvasDisplay">
   <div class="canvasView">
-    <form class="input" onSubmit="return Meteor.tools.getColor()">
-      <input type="color" id="color">
-      <button class="button">Submit</button>
-    </form>
-    <form class= "sizeInput">
-      <div id="slider"></div>
+    <div class="input">
+      <!--<form class="colorInput" onSubmit="return Meteor.tools.getColor()">-->
       <input type="text" id="size"/>
-    </form>
+      <div id="slider"></div>
+      <input type="color" id="color" onChange = "Meteor.tools.getColor()">
+      <!--<button class="button">Submit</button> -->
+    </div>
   </div>
 </template>
 
