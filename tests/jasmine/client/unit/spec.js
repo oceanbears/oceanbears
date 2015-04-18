@@ -21,7 +21,6 @@ describe('client display', function() {
   });
 
   it('should have a size and a color input form', function() {
-    expect($('.sizeInput').length).toBe(1);
     expect($('.input').length).toBe(1);
   });
 });
@@ -56,6 +55,27 @@ describe('Brush size', function() {
     $('#slider').slider("value", 30);
     //checking size
     expect($('#slider').slider("value")).toBe(30);
+  });
+});
+
+describe('Color selection', function() {
+  it('should have color picker', function() {
+    expect($('#color')).toBeDefined();
+    expect($('#color').attr("type")).toBe("color");
+  });
+
+  it('should have black color as default color', function() {
+    //default color should be black (#000000);
+    expect($('#color').val()).toBe('#000000');
+  });
+
+  it('should should be able to change color', function() {
+    //set color to white
+    $('#color').val("#ffffff");
+    //get color
+    Meteor.tools.getColor();
+    //check if color is white
+    expect($('#color').val()).toBe('#ffffff');
   });
 
 });
