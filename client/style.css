@@ -5,14 +5,6 @@ body {
   cursor: default;
 }
 
-/* set the color input form to the top left corner */
-.input {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1;
-}
-
 /* set the user count div to the top right corner */
 .usersOnline {
   position: absolute;
@@ -23,7 +15,7 @@ body {
 
 .sizeInput {
   position: absolute;
-  top: 35px;
+  top: 45px;
   left: 10px;
   z-index: 2;
 }
@@ -40,3 +32,22 @@ body {
   width:145px;
   display: inline-block;
 }
+
+.input {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  z-index: 1;
+}
+
+.button {
+  position: absolute;
+  top: 4px;
+  left: 60px;
+  z-index: 1;
+}
+
+
+
+
+

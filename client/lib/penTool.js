@@ -9,14 +9,13 @@ var startY;
 
 //This function is called when a new color is submitted and resets the form.
 Meteor.tools.getColor = function() {
-  color = document.getElementById("input").value;
-  document.getElementById("input").value = '';
+  color = document.getElementById('color').value;
   return false;
 };
 
 //This function is called when a new size dimension is submitted. 
 Meteor.tools.getSize = function() {
-  var sizeValue = parseInt(document.getElementById("size").value);
+  var sizeValue = parseInt(document.getElementById('size').value);
   if (sizeValue <= 75 && sizeValue > 4) {
     size = sizeValue;
   } else {
