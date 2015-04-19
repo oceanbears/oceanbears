@@ -8,7 +8,11 @@ meteor-platform
 insecure
 jquery
 d3
+<<<<<<< HEAD
 mizzao:jquery-ui
 sanjo:jasmine
 velocity:html-reporter
 
+=======
+underscore
+>>>>>>> [feature] added eraser
