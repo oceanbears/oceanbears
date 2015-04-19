@@ -13,13 +13,6 @@ body {
   z-index: 1;
 }
 
-.sizeInput {
-  position: absolute;
-  top: 45px;
-  left: 10px;
-  z-index: 2;
-}
-
 #size {
   width:30px;
   float: left;
