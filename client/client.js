@@ -125,17 +125,20 @@ Template.canvasDisplay.events({
   'click .eraser': function(event) {
     if( $('.eraser').prop('checked') ){
       $('html, body').css('cursor', 'url(http://png-4.findicons.com/files/icons/1156/fugue/16/eraser.png) 5 13, auto');
+      if ($('.drag').prop('checked')) {
+        $('.drag').prop('checked', false);
+        tool = Meteor.tools.pen; 
+      }
     } else {
       $('html, body').css('cursor', 'url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');
     }
   },
-  
-  //add event listeners here
 
   'click .drag': function(event) {
     //toggle the tool between the drag tool and the pen tool when the checkbox is clicked
     if ($('.drag').prop('checked') === true) {
       $('html, body').css('cursor', 'move');
+      $('.eraser').prop('checked', false);
       tool = Meteor.tools.drag;
     } else {
       $('html, body').css('cursor', 'url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');

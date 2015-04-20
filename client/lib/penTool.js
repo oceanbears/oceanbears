@@ -33,12 +33,13 @@ Meteor.tools.pen = {
     var offset = $('.canvasView').offset();
     var currX = Session.get('offsetX') + event.pageX - offset.left;
     var currY = Session.get('offsetY') + event.pageY - offset.top;
-    if ( $('.eraser').prop('checked') ){
-      if(event.target.x1){
-        var x1 = event.target.x1.baseVal.value;
-        var y1 = event.target.y1.baseVal.value;
-        var x2 = event.target.x2.baseVal.value;
-        var y2 = event.target.y2.baseVal.value;
+    if ($('.eraser').prop('checked')){
+      console.log('erase!', event);
+      if (event.target.x1) {
+        var x1 = event.target.x1.baseVal.value + Session.get('offsetX');
+        var y1 = event.target.y1.baseVal.value + Session.get('offsetY');
+        var x2 = event.target.x2.baseVal.value + Session.get('offsetX');
+        var y2 = event.target.y2.baseVal.value + Session.get('offsetY');
         var currentId = _.pluck((points.find({ x1: x1, y1: y1, x2: x2, y2: y2}, { fields: { _id: 1 }}).fetch()), '_id')
         if(currentId[0]){
           points.remove(currentId[0])
