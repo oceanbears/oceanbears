@@ -1,7 +1,7 @@
+
 /* 
     --- helpers to initialize canvas and draw function 
 */
-
 var Canvas = function() {
   var svg;
   var self = this;
@@ -40,6 +40,7 @@ var Canvas = function() {
           y2: function(d) { return d.y2; }
         })
         .style({
+          'stroke-linecap': 'round',
           'stroke-width': function(d) { return d.size; },
           stroke: function(d) { return d.color; }
         });
@@ -53,6 +54,7 @@ var Canvas = function() {
 /* 
   --- end helpers
 */
+
 
 //collections for the points and the users
 points = new Meteor.Collection('pointsCollection');
@@ -109,8 +111,15 @@ Template.userCount.helpers({
 
 //These events register the user mouse inputs
 Template.canvasDisplay.events({
-  //add event listeners here
-
+  'click .eraser': function(event) {
+    console.log("bitch")
+    if( $('.eraser').prop('checked') ){
+      $('html,body').css('cursor','url(http://png-4.findicons.com/files/icons/1156/fugue/16/eraser.png) 5 13, auto');
+    } else {
+      $('html,body').css('cursor','url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');
+    }
+  },
+  
   'mousedown svg': function (event) {
     //When draw is true, mouse move will record data points
     Session.set('draw', true);
