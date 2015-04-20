@@ -138,7 +138,6 @@ Template.canvasDisplay.events({
       $('html, body').css('cursor', 'move');
       tool = Meteor.tools.drag;
     } else {
-      console.log('ahh');
       $('html, body').css('cursor', 'url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');
       tool = Meteor.tools.pen;
     }
