@@ -5,7 +5,6 @@ body {
   cursor: default;
 }
 
-
 /* set the color input form to the top left corner */
 .input {
   position: absolute;
@@ -35,13 +34,6 @@ body {
   display: inline-block;
 }
 
-.input {
-  position: absolute;
-  top: 10px;
-  left: 15px;
-  z-index: 1;
-}
-
 .button {
   position: absolute;
   top: 4px;
@@ -54,8 +46,5 @@ body {
   left: 300px;
   top: 10px;
 }
-
-
-
 
 
