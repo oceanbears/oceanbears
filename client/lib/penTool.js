@@ -23,16 +23,16 @@ Meteor.tools.getSize = function() {
   return false;
 };
 
-//Create the Pen tool object
+//Create the pen tool object
 //This tool can be instantiated using 'new Meteor.tools.Pen()'
-Meteor.tools.Pen = function() {
+Meteor.tools.pen = {
   //The markPoint function is called whenever the mouse moved. This is the function
   //that will be used to create the different behaviors of the different tools.
-  this.markPoint = function() {
+  markPoint: function() {
     //Insert a line from the start coordinates to the current mouse position. 
     var offset = $('.canvasView').offset();
-    var currX = event.pageX - offset.left;
-    var currY = event.pageY - offset.top;
+    var currX = Session.get('offsetX') + event.pageX - offset.left;
+    var currY = Session.get('offsetY') + event.pageY - offset.top;
     if ( $('.eraser').prop('checked') ){
       if(event.target.x1){
         var x1 = event.target.x1.baseVal.value;
@@ -65,5 +65,5 @@ Meteor.tools.Pen = function() {
         startY = undefined;
       }
     }
-  };
+  }
 };

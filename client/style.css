@@ -46,15 +46,14 @@ body {
   z-index: 1;
 }
 
-.eraser {
+.eraserLabel {
   position: absolute;
   left: 250px;
   top: 12px;
 }
 
-p {
+.dragLabel {
   position: absolute;
-  left: 270px;
+  left: 250px;
+  top: 30px;
 }
-
-

@@ -10,12 +10,12 @@
 <template name="canvasDisplay">
   <div class="canvasView">
     <div class="input">
-      <input type="text" id="size"/>
+      <input type="text" id="size" readonly/>
       <div id="slider"></div>
       <input type="color" id="color" onChange = "Meteor.tools.getColor()">
     </div>
-    <input type="checkbox" class="eraser" placeholder="Eraser">
-    <p>Eraser</p>
+    <label class="eraserLabel"><input type="checkbox" class="eraser">Eraser</label>
+    <label class="dragLabel"><input type="checkbox" class="drag">Drag Canvas</label>
   </div>
 </template>
 

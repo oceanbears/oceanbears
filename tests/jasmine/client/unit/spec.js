@@ -2,11 +2,11 @@ describe('penTool', function() {
   var pen;
 
   beforeEach(function() {
-    pen = new Meteor.tools.Pen();
+    pen = Meteor.tools.pen;
   });
 
   it('should have a pen class instantiator', function() {
-    expect(Meteor.tools.Pen).toBeDefined();
+    expect(Meteor.tools.pen).toBeDefined();
     expect(pen).toBeDefined();
   });
 
