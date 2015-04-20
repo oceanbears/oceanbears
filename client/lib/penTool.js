@@ -40,9 +40,9 @@ Meteor.tools.pen = {
         var y1 = event.target.y1.baseVal.value + Session.get('offsetY');
         var x2 = event.target.x2.baseVal.value + Session.get('offsetX');
         var y2 = event.target.y2.baseVal.value + Session.get('offsetY');
-        var currentId = _.pluck((points.find({ x1: x1, y1: y1, x2: x2, y2: y2}, { fields: { _id: 1 }}).fetch()), '_id')
+        var currentId = _.pluck((points.find({ x1: x1, y1: y1, x2: x2, y2: y2}, { fields: { _id: 1 }}).fetch()), '_id');
         if(currentId[0]){
-          points.remove(currentId[0])
+          points.remove(currentId[0]);
         }
       }
     } else if (startX === undefined && startY === undefined) {
@@ -56,7 +56,7 @@ Meteor.tools.pen = {
         y2: currY,
         color: color, //Added color value. Color is set through the input form. 
         size: size //Added size value. Radius is set through the input form.
-      })
+      });
       //Prepare startX and startY for the next line or reset it if user is done drawing
       if (Session.get('draw')) {
         startX = currX;

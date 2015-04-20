@@ -79,3 +79,36 @@ describe('Color selection', function() {
   });
 
 });
+
+describe('Eraser Function', function() {
+  it('should exist', function() {
+    expect($('.eraser')).toBeDefined();
+  });
+
+  it('should be off on page load', function() {
+    expect($('.eraser').prop('checked')).toBe(false);
+  });
+
+  it('should be true when checked', function() {
+    $('.eraser').prop('checked', true);
+    expect($('.eraser').prop('checked')).toBe(true);
+  });
+
+  it('should delete a point from the database', function() {
+    points.insert({
+        _id: '1',
+          x: 100,
+          y: 100
+        });
+    points.remove('1');
+    expect(points.find({x: 100, y: 100}).fetch().length).toBe(0);
+  });
+
+});
+
+
+
+
+
+
+
