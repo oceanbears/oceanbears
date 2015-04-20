@@ -31,19 +31,29 @@ var Canvas = function() {
       //actually does the drawing
       svg.selectAll('line')
         .data(data, function(d) { return d._id; })
+        .attr({
+          x1: function(d) { return d.x1 - Session.get('offsetX'); },
+          y1: function(d) { return d.y1 - Session.get('offsetY'); },
+          x2: function(d) { return d.x2 - Session.get('offsetX'); },
+          y2: function(d) { return d.y2 - Session.get('offsetY'); }
+        });
+
+      svg.selectAll('line')
+        .data(data, function(d) { return d._id; })
         .enter() //select the datapoints that do not have a circle element already appended
         .append('line')
         .attr({
-          x1: function(d) { return d.x1; },
-          y1: function(d) { return d.y1; },
-          x2: function(d) { return d.x2; },
-          y2: function(d) { return d.y2; }
+          x1: function(d) { return d.x1 - Session.get('offsetX'); },
+          y1: function(d) { return d.y1 - Session.get('offsetY'); },
+          x2: function(d) { return d.x2 - Session.get('offsetX'); },
+          y2: function(d) { return d.y2 - Session.get('offsetY'); }
         })
         .style({
           'stroke-linecap': 'round',
           'stroke-width': function(d) { return d.size; },
           stroke: function(d) { return d.color; }
         });
+
       svg.selectAll('line')
         .data(data, function(d) { return d._id})
         .exit()
@@ -62,7 +72,7 @@ users = new Meteor.Collection('usersCollection');
 
 
 //Tracks the number of users currently accessing the server
-Tracker.autorun( function() {
+Tracker.autorun(function() {
   Meteor.subscribe('usersSubscription');
   var userCt = users.find().fetch();
   Session.set('userCt', userCt.length);
@@ -74,7 +84,10 @@ var tool;
 Meteor.startup( function() {
   canvas = new Canvas();
   //The initial tool being used is the pen tool
-  tool = new Meteor.tools.Pen();
+  tool = Meteor.tools.pen;
+  //offsetX and offsetY are the user's current viewing point
+  Session.set('offsetX', 0);
+  Session.set('offsetY', 0);
 
   Meteor.subscribe('pointsSubscription', function() {
     var initializing = true;
@@ -82,9 +95,8 @@ Meteor.startup( function() {
       //one item in collection added
       added: function(id) {
         if (!initializing) { 
-          var eachPoint = points.find({}).fetch();
-          if(canvas){
-            canvas.draw(eachPoint);
+          if (canvas) {
+            canvas.draw(points.find({}).fetch());
           }
         }
       },
@@ -98,7 +110,6 @@ Meteor.startup( function() {
 
     initializing = false;
     canvas.draw(points.find({}).fetch());
-
   });
 });
 
@@ -113,12 +124,28 @@ Template.userCount.helpers({
 Template.canvasDisplay.events({
   'click .eraser': function(event) {
     if( $('.eraser').prop('checked') ){
-      $('html,body').css('cursor','url(http://png-4.findicons.com/files/icons/1156/fugue/16/eraser.png) 5 13, auto');
+      $('html, body').css('cursor', 'url(http://png-4.findicons.com/files/icons/1156/fugue/16/eraser.png) 5 13, auto');
+      if ($('.drag').prop('checked')) {
+        $('.drag').prop('checked', false);
+        tool = Meteor.tools.pen; 
+      }
     } else {
-      $('html,body').css('cursor','url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');
+      $('html, body').css('cursor', 'url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');
     }
   },
-  
+
+  'click .drag': function(event) {
+    //toggle the tool between the drag tool and the pen tool when the checkbox is clicked
+    if ($('.drag').prop('checked') === true) {
+      $('html, body').css('cursor', 'move');
+      $('.eraser').prop('checked', false);
+      tool = Meteor.tools.drag;
+    } else {
+      $('html, body').css('cursor', 'url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto');
+      tool = Meteor.tools.pen;
+    }
+  },
+
   'mousedown svg': function (event) {
     //When draw is true, mouse move will record data points
     Session.set('draw', true);
@@ -129,6 +156,7 @@ Template.canvasDisplay.events({
     if (Session.get('draw')) {
       Session.set('draw', false);
       tool.markPoint();
+      canvas.draw(points.find({}).fetch());
     }
   },
 
