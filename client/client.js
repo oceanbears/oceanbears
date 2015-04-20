@@ -112,7 +112,6 @@ Template.userCount.helpers({
 //These events register the user mouse inputs
 Template.canvasDisplay.events({
   'click .eraser': function(event) {
-    console.log("bitch")
     if( $('.eraser').prop('checked') ){
       $('html,body').css('cursor','url(http://png-4.findicons.com/files/icons/1156/fugue/16/eraser.png) 5 13, auto');
     } else {

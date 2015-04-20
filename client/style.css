@@ -6,9 +6,10 @@ body {
   font-family: helvetica;
 }
 
-.canvasView{
+.canvasView {
   font-family: helvetica;
 }
+
 /* set the color input form to the top left corner */
 .input {
   position: absolute;
@@ -51,7 +52,7 @@ body {
   top: 12px;
 }
 
-p{
+p {
   position: absolute;
   left: 270px;
 }
