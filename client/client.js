@@ -72,7 +72,7 @@ users = new Meteor.Collection('usersCollection');
 
 
 //Tracks the number of users currently accessing the server
-Tracker.autorun( function() {
+Tracker.autorun(function() {
   Meteor.subscribe('usersSubscription');
   var userCt = users.find().fetch();
   Session.set('userCt', userCt.length);
@@ -95,9 +95,8 @@ Meteor.startup( function() {
       //one item in collection added
       added: function(id) {
         if (!initializing) { 
-          var eachPoint = points.find({}).fetch();
-          if(canvas){
-            canvas.draw(eachPoint);
+          if (canvas) {
+            canvas.draw(points.find({}).fetch());
           }
         }
       },
@@ -137,7 +136,6 @@ Template.canvasDisplay.events({
     //toggle the tool between the drag tool and the pen tool when the checkbox is clicked
     if ($('.drag').prop('checked') === true) {
       $('html, body').css('cursor', 'move');
-      console.log('drag');
       tool = Meteor.tools.drag;
     } else {
       console.log('ahh');

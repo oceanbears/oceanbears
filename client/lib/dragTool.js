@@ -20,7 +20,6 @@ Meteor.tools.drag = {
       //position and the starting mouse position
       Session.set('offsetX', Session.get('offsetX') + startX - event.pageX);
       Session.set('offsetY', Session.get('offsetY') + startY - event.pageY);
-      console.log('xy offsets: ', Session.get('offsetX'), Session.get('offsetY'));
       startX = undefined;
       startY = undefined;
     }
