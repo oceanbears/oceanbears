@@ -43,6 +43,10 @@ var Canvas = function() {
           'stroke-width': function(d) { return d.size; },
           stroke: function(d) { return d.color; }
         });
+      svg.selectAll('line')
+        .data(data, function(d) { return d._id})
+        .exit()
+        .remove()
     }
   };
 };
@@ -76,10 +80,16 @@ Meteor.startup( function() {
       //one item in collection added
       added: function(id) {
         if (!initializing) { 
-          var eachPoint = points.find({_id:id}).fetch();
+          var eachPoint = points.find({}).fetch();
           if(canvas){
             canvas.draw(eachPoint);
           }
+        }
+      },
+
+      removed: function(id) {
+        if(canvas){
+          canvas.draw(points.find({}).fetch());
         }
       }
     });
