@@ -34,7 +34,6 @@ Meteor.tools.pen = {
     var currX = Session.get('offsetX') + event.pageX - offset.left;
     var currY = Session.get('offsetY') + event.pageY - offset.top;
     if ($('.eraser').prop('checked')){
-      console.log('erase!', event);
       if (event.target.x1) {
         var x1 = event.target.x1.baseVal.value + Session.get('offsetX');
         var y1 = event.target.y1.baseVal.value + Session.get('offsetY');

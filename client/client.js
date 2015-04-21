@@ -9,7 +9,7 @@ var Canvas = function() {
 
   //update window and svg height when the window is resized
   $(window).resize(function() {
-    if($(this).height() != windowHeight) {
+    if($(this).height() !== windowHeight) {
       windowHeight = $(this).height();
       $('.canvasView').height(windowHeight);
       svg.attr('height', windowHeight);
@@ -81,7 +81,7 @@ Tracker.autorun(function() {
 //This variable holds the current tool that is being used
 var tool;
 
-Meteor.startup( function() {
+Meteor.startup(function() {
   canvas = new Canvas();
   //The initial tool being used is the pen tool
   tool = Meteor.tools.pen;
@@ -102,7 +102,7 @@ Meteor.startup( function() {
       },
 
       removed: function(id) {
-        if(canvas){
+        if (canvas) {
           canvas.draw(points.find({}).fetch());
         }
       }
@@ -146,13 +146,13 @@ Template.canvasDisplay.events({
     }
   },
 
-  'mousedown svg': function (event) {
+  'mousedown svg': function(event) {
     //When draw is true, mouse move will record data points
     Session.set('draw', true);
     tool.markPoint();
   },
 
-  'mouseup': function (event) {
+  'mouseup': function(event) {
     if (Session.get('draw')) {
       Session.set('draw', false);
       tool.markPoint();
@@ -160,7 +160,7 @@ Template.canvasDisplay.events({
     }
   },
 
-  'mousemove': function (event) {
+  'mousemove': function(event) {
     //Only draws when mousemove is active
     if (Session.get('draw')) {
       tool.markPoint();
