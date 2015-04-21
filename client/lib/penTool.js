@@ -6,17 +6,15 @@ var size = 12;
 //StartX and StartY are the from coordinates; when drawing, a line is created from the start coordinates to the current mouse position
 var startX;
 var startY;
-
 //This function is called when a new color is submitted and resets the form.
 Meteor.tools.getColor = function() {
-  color = document.getElementById("input").value;
-  document.getElementById("input").value = '';
+  color = document.getElementById('color').value;
   return false;
 };
 
 //This function is called when a new size dimension is submitted. 
 Meteor.tools.getSize = function() {
-  var sizeValue = parseInt(document.getElementById("size").value);
+  var sizeValue = parseInt(document.getElementById('size').value);
   if (sizeValue <= 75 && sizeValue > 4) {
     size = sizeValue;
   } else {
@@ -25,17 +23,28 @@ Meteor.tools.getSize = function() {
   return false;
 };
 
-//Create the Pen tool object
+//Create the pen tool object
 //This tool can be instantiated using 'new Meteor.tools.Pen()'
-Meteor.tools.Pen = function() {
+Meteor.tools.pen = {
   //The markPoint function is called whenever the mouse moved. This is the function
   //that will be used to create the different behaviors of the different tools.
-  this.markPoint = function() {
+  markPoint: function() {
     //Insert a line from the start coordinates to the current mouse position. 
     var offset = $('.canvasView').offset();
-    var currX = event.pageX - offset.left;
-    var currY = event.pageY - offset.top;
-    if (startX === undefined && startY === undefined) {
+    var currX = Session.get('offsetX') + event.pageX - offset.left;
+    var currY = Session.get('offsetY') + event.pageY - offset.top;
+    if ($('.eraser').prop('checked')){
+      if (event.target.x1) {
+        var x1 = event.target.x1.baseVal.value + Session.get('offsetX');
+        var y1 = event.target.y1.baseVal.value + Session.get('offsetY');
+        var x2 = event.target.x2.baseVal.value + Session.get('offsetX');
+        var y2 = event.target.y2.baseVal.value + Session.get('offsetY');
+        var currentId = _.pluck((points.find({ x1: x1, y1: y1, x2: x2, y2: y2}, { fields: { _id: 1 }}).fetch()), '_id');
+        if(currentId[0]){
+          points.remove(currentId[0]);
+        }
+      }
+    } else if (startX === undefined && startY === undefined) {
       startX = currX;
       startY = currY;
     } else {
@@ -56,5 +65,5 @@ Meteor.tools.Pen = function() {
         startY = undefined;
       }
     }
-  };
+  }
 };

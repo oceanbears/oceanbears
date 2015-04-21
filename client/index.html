@@ -9,15 +9,13 @@
 
 <template name="canvasDisplay">
   <div class="canvasView">
-    <!-- Added input form for color selection -->
-    <form class= "input" onSubmit="return Meteor.tools.getColor()">
-      <input type="text" id='input' placeholder="Enter a Color!">
-      <button>Submit</button>
-    </form>
-    <form class= "sizeInput">
+    <div class="input">
+      <input type="text" id="size" readonly/>
       <div id="slider"></div>
-      <input type="text" id="size"/>
-    </form>
+      <input type="color" id="color" onChange = "Meteor.tools.getColor()">
+    </div>
+    <label class="eraserLabel"><input type="checkbox" class="eraser">Eraser</label>
+    <label class="dragLabel"><input type="checkbox" class="drag">Drag Canvas</label>
   </div>
 </template>
 

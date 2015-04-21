@@ -2,14 +2,19 @@
 body {
   overflow: hidden;
   margin: 0px 0px;
-  cursor: default;
+  cursor: url(http://www.downloadclipart.net/svg/14969-paint-brush-svg.svg) 10 42, auto;
+  font-family: helvetica;
+}
+
+.canvasView {
+  font-family: helvetica;
 }
 
 /* set the color input form to the top left corner */
 .input {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 15px;
   z-index: 1;
 }
 
@@ -19,13 +24,6 @@ body {
   top: 10px;
   right: 10px;
   z-index: 1;
-}
-
-.sizeInput {
-  position: absolute;
-  top: 35px;
-  left: 10px;
-  z-index: 2;
 }
 
 #size {
@@ -39,4 +37,23 @@ body {
 #slider {
   width:145px;
   display: inline-block;
+}
+
+.button {
+  position: absolute;
+  top: 4px;
+  left: 60px;
+  z-index: 1;
+}
+
+.eraserLabel {
+  position: absolute;
+  left: 250px;
+  top: 12px;
+}
+
+.dragLabel {
+  position: absolute;
+  left: 250px;
+  top: 30px;
 }
